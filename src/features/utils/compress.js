@@ -1,19 +1,34 @@
-import { createGzip } from "node:zlib";
+import { createBrotliCompress } from "node:zlib";
 import { createReadStream, createWriteStream } from "node:fs";
 import { pipeline } from "node:stream/promises";
 
+import { makeDstPath } from "./make_dst_path.js";
+
 /**
  * compress file to .gz archive
+ * @param src - path to file (including filename)
+ * @param dstDir - path to destination directory
  */
-export const compress = async (src) => {
-  const dst = src + ".gz";
+export const compress = async (src, dstDir) => {
+  const dstPath = await makeDstPath(src, dstDir);
 
-  const gzip = createGzip();
+  if (dstPath) {
+    const dst = dstPath + ".gz";
+    const gzip = createBrotliCompress();
 
-  const srcStream = createReadStream(src);
-  const dstStream = createWriteStream(dst);
+    const readStream = createReadStream(src);
+    const writeStream = createWriteStream(dst);
 
-  await pipeline(srcStream, gzip, dstStream).catch((error) => {
-    console.error(`error during compressing: ${error}`);
-  });
+    pipeline(readStream, gzip, writeStream)
+      .then(() => {
+        console.log("compression completed successfully");
+      })
+      .catch((error) => {
+        console.error(`error during compressing: ${error}`);
+      });
+  } else {
+    console.error(
+      "can not compress file, make sure that source and destination are provided"
+    );
+  }
 };

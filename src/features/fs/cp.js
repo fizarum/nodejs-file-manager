@@ -1,7 +1,5 @@
-import { basename } from "node:path";
-import { isFileDirectory } from "../utils/is_file_dir.js";
-import { isFileExists } from "../utils/is_file_exists.js";
 import { createReadStream, createWriteStream } from "node:fs";
+import { makeDstPath } from "../utils/make_dst_path.js";
 
 /**
  * Copy file
@@ -10,14 +8,9 @@ import { createReadStream, createWriteStream } from "node:fs";
  * @param printResults - print success results of copy operation
  */
 export const cp = async (src, dstDir, printResults) => {
-  const srcExists = await isFileExists(src);
-  const isDstExists = await isFileExists(dstDir);
-  const isDstDir = await isFileDirectory(dstDir);
+  const dst = await makeDstPath(src, dstDir);
 
-  if (srcExists && isDstExists && isDstDir) {
-    const filename = basename(src);
-    const dst = dstDir + "/" + filename;
-
+  if (dst) {
     const readStream = createReadStream(src);
     const writeStream = createWriteStream(dst);
 

@@ -6,6 +6,7 @@ export const rm = async (src) => {
 
   if (exists) {
     await _rm(src);
+    console.log("file removed successfully");
   } else {
     console.error(`can not remove: ${src}`);
   }

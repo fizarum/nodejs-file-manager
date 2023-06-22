@@ -1,6 +1,7 @@
 import { nwdProcess } from "../features/nwd/nwd_feature.js";
 import { osProcess } from "../features/os/os_feature.js";
 import { fsProcess } from "../features/fs/fs_feature.js";
+import { utilsProcess } from "../features/utils/utils_feature.js";
 
 export const handle = (command) => {
   const filtered = command.trim();
@@ -57,6 +58,19 @@ export const handle = (command) => {
 
     case "rm":
       fsProcess(comm, args);
+      break;
+
+    /* utils (hash, zip) section */
+    case "hash":
+      utilsProcess(comm, args);
+      break;
+
+    case "compress":
+      utilsProcess(comm, args);
+      break;
+
+    case "decompress":
+      utilsProcess(comm, args);
       break;
 
     /* rest commands section*/

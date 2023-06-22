@@ -1,22 +1,33 @@
 import { createReadStream, createWriteStream } from "node:fs";
 import { pipeline } from "node:stream/promises";
-import { rename } from "node:fs/promises";
-import { createUnzip } from "node:zlib";
+import { createBrotliDecompress } from "node:zlib";
+import { makeDstPath } from "./make_dst_path.js";
+import { removeExtension } from "./remove_extension.js";
 
-export const decompress = async (src) => {
-  if (src.endWith(".gz")) {
-    const dst = src.substring(0, src.length - 3);
-    const unzip = createUnzip();
+/**
+ * Decompress file
+ */
+export const decompress = async (src, dstDir) => {
+  const dstDirty = await makeDstPath(src, dstDir);
 
-    //we have to rename given archive to target file_name + ".gz"
-    //otherwise decompression will return empty content
-    await rename(archive, src);
+  if (dstDirty) {
+    const dst = removeExtension(dstDirty, ".gz");
+
+    const unzip = createBrotliDecompress();
 
     const srcStream = createReadStream(src);
     const dstStream = createWriteStream(dst);
 
-    await pipeline(srcStream, unzip, dstStream).catch((error) => {
-      console.error(`error during uncompressing: ${error}`);
-    });
+    pipeline(srcStream, unzip, dstStream)
+      .then(() => {
+        console.log("decompression completed successfully");
+      })
+      .catch((error) => {
+        console.error(`error during decompressing: ${error}`);
+      });
+  } else {
+    console.error(
+      "can not decompress file, make sure that source and destination are provided"
+    );
   }
 };
