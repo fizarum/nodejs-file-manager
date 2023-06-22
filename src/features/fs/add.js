@@ -1,12 +1,16 @@
 import { writeFile } from "node:fs/promises";
-import { isFileExists } from "./utils.js";
+import { isFileExists } from "../utils/is_file_exists.js";
 
+/**
+ * Create empty file in current working directory
+ */
 export const add = async (src) => {
   const exists = await isFileExists(src);
 
-  if (exists) {
-    throw new Error("FS operation failed");
+  if (!exists) {
+    await writeFile(src, "");
+    console.log("file created successfully");
+  } else {
+    console.error(`such file already exists: ${src}`);
   }
-
-  await writeFile(src, "");
 };

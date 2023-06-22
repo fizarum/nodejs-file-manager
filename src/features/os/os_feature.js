@@ -5,6 +5,7 @@ import { username } from "./username.js";
 
 export const osProcess = (_, args) => {
   const arg = args[0];
+
   switch (arg) {
     case "--cpus":
       cpuInfo();

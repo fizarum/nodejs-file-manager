@@ -1,5 +1,6 @@
 import { nwdProcess } from "../features/nwd/nwd_feature.js";
 import { osProcess } from "../features/os/os_feature.js";
+import { fsProcess } from "../features/fs/fs_feature.js";
 
 export const handle = (command) => {
   const filtered = command.trim();
@@ -33,13 +34,39 @@ export const handle = (command) => {
       nwdProcess(comm, args);
       break;
 
+    /* Basic operations with files section */
+    case "cat":
+      fsProcess(comm, args);
+      break;
+
+    case "add":
+      fsProcess(comm, args);
+      break;
+
+    case "rn":
+      fsProcess(comm, args);
+      break;
+
+    case "cp":
+      fsProcess(comm, args);
+      break;
+
+    case "mv":
+      fsProcess(comm, args);
+      break;
+
+    case "rm":
+      fsProcess(comm, args);
+      break;
+
+    /* rest commands section*/
     case ".exit":
       exitApp();
       break;
 
-    //TODO: add rest of commands
+    //TODO: complete other commands
+
     default:
-      //TODO: complete
       console.log(`unrecognized command: ${comm}`);
       break;
   }
