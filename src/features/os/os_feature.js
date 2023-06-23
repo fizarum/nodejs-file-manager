@@ -1,5 +1,6 @@
 import { cpuArch } from "./cpu_arch.js";
 import { cpuInfo } from "./cpu_info.js";
+import { eol } from "./eol.js";
 import { homedir } from "./homedir.js";
 import { username } from "./username.js";
 
@@ -25,6 +26,15 @@ export const osProcess = (_, args, onCommandCompleted) => {
     case "--architecture":
       cpuArch();
       onCommandCompleted();
+      break;
+
+    case "--EOL":
+      eol();
+      onCommandCompleted();
+      break;
+
+    default:
+      console.error("Invalid input");
       break;
   }
 };

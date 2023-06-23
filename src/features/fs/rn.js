@@ -9,6 +9,6 @@ export const rn = async (src, dst) => {
     await rename(src, dst);
     console.log("file renamed successfully");
   } else {
-    console.error(`Operation failed, can not move file${src} to ${dst}`);
+    console.error(`Operation failed, can not move file: ${src} to: ${dst}`);
   }
 };

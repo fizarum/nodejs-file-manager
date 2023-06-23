@@ -11,33 +11,61 @@ export const fsProcess = async (command, args, onCommandCompleted) => {
 
   switch (command) {
     case "cat":
-      await cat(firstArg);
-      onCommandCompleted();
+      if (firstArg) {
+        await cat(firstArg);
+        onCommandCompleted();
+      } else {
+        printInvalidMessage();
+      }
       break;
 
     case "add":
-      await add(firstArg);
-      onCommandCompleted();
+      if (firstArg) {
+        await add(firstArg);
+        onCommandCompleted();
+      } else {
+        printInvalidMessage();
+      }
       break;
 
     case "rn":
-      await rn(firstArg, secondArg);
-      onCommandCompleted();
+      if (firstArg && secondArg) {
+        await rn(firstArg, secondArg);
+        onCommandCompleted();
+      } else {
+        printInvalidMessage();
+      }
       break;
 
     case "cp":
-      await cp(firstArg, secondArg, true);
-      onCommandCompleted();
+      if (firstArg && secondArg) {
+        await cp(firstArg, secondArg, true);
+        onCommandCompleted();
+      } else {
+        printInvalidMessage();
+      }
       break;
 
     case "mv":
-      await mv(firstArg, secondArg);
-      onCommandCompleted();
+      if (firstArg && secondArg) {
+        await mv(firstArg, secondArg);
+        onCommandCompleted();
+      } else {
+        printInvalidMessage();
+      }
       break;
 
     case "rm":
-      await rm(firstArg);
-      onCommandCompleted();
+      if (firstArg) {
+        await rm(firstArg);
+        onCommandCompleted();
+      } else {
+        printInvalidMessage();
+      }
       break;
   }
+};
+
+const printInvalidMessage = () => {
+  console.error("Invalid input");
 };

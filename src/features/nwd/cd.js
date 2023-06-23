@@ -15,5 +15,7 @@ export const cd = async (dst) => {
     } catch {
       console.error(`Operation failed, can not cd to: ${dst}`);
     }
+  } else {
+    console.error("Invalid input");
   }
 };

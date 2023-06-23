@@ -8,18 +8,34 @@ export const utilsProcess = async (command, args, onCommandCompleted) => {
 
   switch (command) {
     case "hash":
-      await hash(firstArg);
-      onCommandCompleted();
+      if (firstArg) {
+        await hash(firstArg);
+        onCommandCompleted();
+      } else {
+        printInvalidMessage();
+      }
       break;
 
     case "compress":
-      compress(firstArg, secondArg);
-      onCommandCompleted();
+      if (firstArg && secondArg) {
+        compress(firstArg, secondArg);
+        onCommandCompleted();
+      } else {
+        printInvalidMessage();
+      }
       break;
 
     case "decompress":
-      await decompress(firstArg, secondArg);
-      onCommandCompleted();
+      if (firstArg && secondArg) {
+        await decompress(firstArg, secondArg);
+        onCommandCompleted();
+      } else {
+        printInvalidMessage();
+      }
       break;
   }
+};
+
+const printInvalidMessage = () => {
+  console.error("Invalid input");
 };

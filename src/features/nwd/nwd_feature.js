@@ -11,8 +11,13 @@ export const nwdProcess = async (command, args, onCommandCompleted) => {
       break;
 
     case "cd":
-      await cd(args[0]);
-      onCommandCompleted();
+      const arg = args[0];
+      if (arg) {
+        await cd(arg);
+        onCommandCompleted();
+      } else {
+        console.error("Invalid input");
+      }
       break;
 
     case "ls":
