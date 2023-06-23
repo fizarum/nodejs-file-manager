@@ -3,24 +3,28 @@ import { cpuInfo } from "./cpu_info.js";
 import { homedir } from "./homedir.js";
 import { username } from "./username.js";
 
-export const osProcess = (_, args) => {
+export const osProcess = (_, args, onCommandCompleted) => {
   const arg = args[0];
 
   switch (arg) {
     case "--cpus":
       cpuInfo();
+      onCommandCompleted();
       break;
 
     case "--homedir":
-      homedir();
+      console.log(`home dir: ${homedir()}`);
+      onCommandCompleted();
       break;
 
     case "--username":
       username();
+      onCommandCompleted();
       break;
 
     case "--architecture":
       cpuArch();
+      onCommandCompleted();
       break;
   }
 };

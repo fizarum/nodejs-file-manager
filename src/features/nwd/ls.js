@@ -38,5 +38,9 @@ const getFileType = (file) => {
     return "file";
   }
 
+  if (file.isSymbolicLink()) {
+    return "link";
+  }
+
   return "n/a";
 };

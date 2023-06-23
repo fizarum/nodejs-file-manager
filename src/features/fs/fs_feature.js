@@ -5,33 +5,39 @@ import { rn } from "./rn.js";
 import { mv } from "./mv.js";
 import { cp } from "./cp.js";
 
-export const fsProcess = (command, args) => {
+export const fsProcess = async (command, args, onCommandCompleted) => {
   const firstArg = args[0];
   const secondArg = args[1];
 
   switch (command) {
     case "cat":
-      cat(firstArg);
+      await cat(firstArg);
+      onCommandCompleted();
       break;
 
     case "add":
-      add(firstArg);
+      await add(firstArg);
+      onCommandCompleted();
       break;
 
     case "rn":
-      rn(firstArg, secondArg);
+      await rn(firstArg, secondArg);
+      onCommandCompleted();
       break;
 
     case "cp":
-      cp(firstArg, secondArg, true);
+      await cp(firstArg, secondArg, true);
+      onCommandCompleted();
       break;
 
     case "mv":
-      mv(firstArg, secondArg);
+      await mv(firstArg, secondArg);
+      onCommandCompleted();
       break;
 
     case "rm":
-      rm(firstArg);
+      await rm(firstArg);
+      onCommandCompleted();
       break;
   }
 };
