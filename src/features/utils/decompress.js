@@ -23,11 +23,11 @@ export const decompress = async (src, dstDir) => {
         console.log("decompression completed successfully");
       })
       .catch((error) => {
-        console.error(`error during decompressing: ${error}`);
+        console.error(`Operation failed, error during decompressing: ${error}`);
       });
   } else {
     console.error(
-      "can not decompress file, make sure that source and destination are provided"
+      "Operation failed, can not decompress file, make sure that source and destination are provided"
     );
   }
 };

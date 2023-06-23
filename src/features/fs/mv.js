@@ -13,7 +13,8 @@ export const mv = async (src, dstDir) => {
         console.log("file moved successfully");
       })
       .catch(() => {
-        showErrorForFileOperations(src, dstDir);
+        console.error(`Operation failed, can not move/copy file: ${src} to ${dstDir}
+make sure that source file exists & destination is directory`);
       });
   });
 };

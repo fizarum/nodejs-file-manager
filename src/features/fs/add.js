@@ -11,6 +11,6 @@ export const add = async (src) => {
     await writeFile(src, "");
     console.log("file created successfully");
   } else {
-    console.error(`such file already exists: ${src}`);
+    console.error(`Operation failed, such file already exists: ${src}`);
   }
 };

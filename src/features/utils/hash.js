@@ -24,7 +24,7 @@ export const hash = async (src) => {
       console.log(err);
     }
   } else {
-    console.error(`can not calculate hash, make sure that file:
+    console.error(`Operation failed, can not calculate hash, make sure that file:
 '${src}' exists and its not a directory`);
   }
 };

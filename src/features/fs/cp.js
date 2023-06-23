@@ -29,10 +29,10 @@ export const cp = async (src, dstDir, printResults) => {
 };
 
 const showErrorForStreamOperations = () => {
-  console.error("error during move/copy operation");
+  console.error("Operation failed, error during move/copy operation");
 };
 
 const showErrorForFileOperations = (src, dstDir) => {
-  console.error(`can not move/copy file: ${src} to ${dstDir}
+  console.error(`Operation failed, can not move/copy file: ${src} to ${dstDir}
 make sure that source file exists & destination is directory`);
 };

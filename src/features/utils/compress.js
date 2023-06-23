@@ -24,11 +24,11 @@ export const compress = async (src, dstDir) => {
         console.log("compression completed successfully");
       })
       .catch((error) => {
-        console.error(`error during compressing: ${error}`);
+        console.error(`Operation failed, error during compressing: ${error}`);
       });
   } else {
     console.error(
-      "can not compress file, make sure that source and destination are provided"
+      "Operation failed, can not compress file, make sure that source and destination are provided"
     );
   }
 };

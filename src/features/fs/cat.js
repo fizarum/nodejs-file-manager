@@ -16,6 +16,6 @@ export const cat = async (src) => {
       console.log(chunk);
     });
   } else {
-    console.error(`can not read file: ${src}`);
+    console.error(`Operation failed, can not read file: ${src}`);
   }
 };
