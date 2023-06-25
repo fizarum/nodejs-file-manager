@@ -11,7 +11,7 @@ export const decompress = async (src, dstDir) => {
   const dstDirty = await makeDstPath(src, dstDir);
 
   if (dstDirty) {
-    const dst = removeExtension(dstDirty, ".gz");
+    const dst = removeExtension(dstDirty, ".br");
 
     const unzip = createBrotliDecompress();
 

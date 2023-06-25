@@ -13,7 +13,7 @@ export const compress = async (src, dstDir) => {
   const dstPath = await makeDstPath(src, dstDir);
 
   if (dstPath) {
-    const dst = dstPath + ".gz";
+    const dst = dstPath + ".br";
     const gzip = createBrotliCompress();
 
     const readStream = createReadStream(src);
