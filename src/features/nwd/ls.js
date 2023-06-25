@@ -14,14 +14,11 @@ export const ls = async () => {
   restFiles.sort((file1, file2) => file1.name - file2.name > 0);
   const sortedFiles = dirs.concat(restFiles);
 
-  const result = sortedFiles
-    .map((file, index) => {
-      const fileType = getFileType(file);
-      return `\u2502 ${index}\t\u2502 ${fileType}\t\u2502 ${file.name}`;
-    })
-    .join("\n");
-
-  console.log(result);
+  const result = sortedFiles.map((file) => {
+    const fileType = getFileType(file);
+    return { type: fileType, name: file.name };
+  });
+  console.table(result);
 };
 
 /**
