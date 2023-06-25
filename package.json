@@ -4,7 +4,8 @@
   "description": "This repository is the part of nodejs-assignments https://github.com/AlreadyBored/nodejs-assignments",
   "type": "module",
   "scripts": {
-    "start": "node src/app.js -- --username=Peppe",
+    "start": "node src/app.js",
+    "startAsPeppe": "node src/app.js -- --username=Peppe",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "fizarum",
